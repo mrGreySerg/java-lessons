@@ -1,11 +1,14 @@
 package firstlesson.homework.task3;
 
-import java.util.Random;
-
 public class Warrior {
 
-    protected String name;
+    private final String name;
     private int health = 100;
+
+    public String getName() {
+        return name;
+    }
+
 
     public int getHealth() {
         return health;
@@ -24,19 +27,6 @@ public class Warrior {
                 name, health);
     }
 
-    public void fight(Warrior firstUnit, Warrior secondUnit) {
-        Random random = new Random();
-        Warrior[] warriors = { firstUnit, secondUnit };
-        while (firstUnit.health > 0 && secondUnit.health > 0) {
-            Warrior attackWarrior = warriors[random.nextInt(warriors.length)];
-            Warrior attackedWarrior = attackWarrior.equals(firstUnit) ? secondUnit : firstUnit;
-            attackWarrior.hit(attackedWarrior);
-            System.out.printf("%s атаковал %s. У противника осталось здоровья - %d",
-                    attackWarrior.name, attackedWarrior.name, attackedWarrior.health);
-        }
-        return;
-    }
-
     public void hit(Warrior warrior) {
         int damageOfHit = 20;
         int healthAfterHit = warrior.getHealth() - damageOfHit;
@@ -51,19 +41,9 @@ public class Warrior {
         achilles.showInfo();
         hercules.showInfo();
 
-        Random random = new Random();
-        Warrior[] warriors = { achilles, hercules };
-
         new Battle().fight(hercules, achilles);
 
-
-
-
-
     }
-
-
-
     /*
     Напишите программу по следующему описанию. Есть класс "Воин".
     От него создаются два экземпляра-юнита. Каждому устанавливается
